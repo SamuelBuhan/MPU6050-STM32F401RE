@@ -1,0 +1,13 @@
+i2c.c:32:6:MX_I2C1_Init	8	static
+i2c.c:61:6:HAL_I2C_MspInit	48	static
+i2c.c:134:6:HAL_I2C_MspDeInit	8	static
+i2c.c:168:6:MX_I2C1_Configuration	0	static
+i2c.c:177:6:MX_I2C1_Transmit	0	static
+i2c.c:182:6:MX_I2C1_Receive	0	static
+i2c.c:187:6:MX_I2C1_Mem_Write	16	static
+i2c.c:194:6:MX_I2C1_Mem_Read	16	static
+i2c.c:202:6:HAL_I2C_MasterTxCpltCallback	0	static
+i2c.c:210:6:HAL_I2C_MasterRxCpltCallback	0	static
+i2c.c:218:6:HAL_I2C_MemTxCpltCallback	0	static
+i2c.c:227:6:HAL_I2C_MemRxCpltCallback	0	static
+i2c.c:235:6:HAL_I2C_ErrorCallback	0	static
