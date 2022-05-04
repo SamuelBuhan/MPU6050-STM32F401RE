@@ -1,6 +1,7 @@
 # Created by Samuel BUHAN, 27/03/2022
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import PyQt5
 from PyQt5.QtCore import Qt 
 import pyqtgraph as pg
 import serial as ps
@@ -16,30 +17,78 @@ class IMUVisualizer(QtWidgets.QWidget):
 
     def __init__(self, steps=5, *args, **kwargs):
         super(IMUVisualizer, self).__init__(*args, **kwargs)
-        layout = QtWidgets.QVBoxLayout()
-        self.createGraphs()
-        layout.addWidget(self.view)
-        self.setLayout(layout)
-        self.serialPort = ps.Serial('COM3', 115200, timeout=0)
-        self.serialPort.close()
-        self.serialPort.open()
-        if self.serialPort.isOpen():
-            self.timer = QtCore.QTimer()
-            self.timer.timeout.connect(self.readFrame)
-            self.timer.start(10)
+        self.mainLayout = QtWidgets.QVBoxLayout(self)
+        self.createWindow()
+        try:
+            self.serialPort = ps.Serial('COM3', 115200, timeout=0)
+            self.serialPort.close()
+            self.serialPort.open()
+            if self.serialPort.isOpen():
+                self.timer = QtCore.QTimer()
+                self.timer.timeout.connect(self.readFrame)
+                self.timer.start(10)
+        except: 
+            print("!COM port not found!")
+            pass
 
-    def createGraphs(self):
-        self.view = pg.GraphicsView()
-        self.layoutGraph = pg.GraphicsLayout(border=(100,100,100))
-        self.view.setCentralItem(self.layoutGraph)
 
-        self.plotItemAccX = self.layoutGraph.addPlot(title="AccX")
-        self.plotItemAccY = self.layoutGraph.addPlot(title="AccY")
-        self.plotItemAccZ = self.layoutGraph.addPlot(title="AccZ")
+    def createWindow(self):
+
+        # tabs definition
+        self.tabs = QtWidgets.QTabWidget()
+        self.tabConfiguration = QtWidgets.QWidget()
+        self.tabVisualise = QtWidgets.QWidget()
+
+
+        self.tabs.addTab(self.tabVisualise,"Visualisation")
+        self.tabs.addTab(self.tabConfiguration,"Configuration")
+        
+
+        # add tabs to main layout 
+        self.mainLayout.addWidget(self.tabs)
+
+        self.view = pg.GraphicsLayoutWidget()
+        self.layoutGraphs = pg.GraphicsLayout(border=(100,100,100))
+
+
+        # set visualise tab
+        self.view.setCentralItem(self.layoutGraphs)
+
+        self.plotItemAccX = self.layoutGraphs.addPlot(title="AccX")
+        self.plotItemAccY = self.layoutGraphs.addPlot(title="AccY")
+        self.plotItemAccZ = self.layoutGraphs.addPlot(title="AccZ")
+        self.layoutGraphs.nextRow()
+
+        self.plotItemGyroX = self.layoutGraphs.addPlot(title="GyroX")
+        self.plotItemGyroY = self.layoutGraphs.addPlot(title="GyroY")
+        self.plotItemGyroZ = self.layoutGraphs.addPlot(title="GyroZ")
+        self.layoutGraphs.nextRow()
+
+        self.plotItemMagnX = self.layoutGraphs.addPlot(title="MagnX")
+        self.plotItemMagnY = self.layoutGraphs.addPlot(title="MagnY")
+        self.plotItemMagnZ = self.layoutGraphs.addPlot(title="MagnZ")
 
         self.GraphAccX = self.plotItemAccX.plot()
         self.GraphAccY = self.plotItemAccY.plot()
         self.GraphAccZ = self.plotItemAccZ.plot()
+
+        self.GraphAccX = self.plotItemGyroX.plot()
+        self.GraphAccY = self.plotItemGyroY.plot()
+        self.GraphAccZ = self.plotItemGyroZ.plot()
+
+        self.GraphAccX = self.plotItemMagnX.plot()
+        self.GraphAccY = self.plotItemMagnY.plot()
+        self.GraphAccZ = self.plotItemMagnZ.plot()
+
+        TmpLayout = QtWidgets.QHBoxLayout()
+        TmpLayout.addWidget(self.view)
+        self.tabVisualise.setLayout(TmpLayout)
+
+
+
+
+
+
         
         # self.view.show()
     def readFrame(self):
