@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000194  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000055a4  08000194  08000194  00010194  2**2
+  1 .text         00005550  08000194  08000194  00010194  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000060  08005738  08005738  00015738  2**2
+  2 .rodata       00000060  080056e4  080056e4  000156e4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08005798  08005798  0002000c  2**0
+  3 .ARM.extab    00000000  08005744  08005744  0002000c  2**0
                   CONTENTS
-  4 .ARM          00000008  08005798  08005798  00015798  2**2
+  4 .ARM          00000008  08005744  08005744  00015744  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  080057a0  080057a0  0002000c  2**0
+  5 .preinit_array 00000000  0800574c  0800574c  0002000c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  080057a0  080057a0  000157a0  2**2
+  6 .init_array   00000004  0800574c  0800574c  0001574c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  080057a4  080057a4  000157a4  2**2
+  7 .fini_array   00000004  08005750  08005750  00015750  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         0000000c  20000000  080057a8  00020000  2**2
+  8 .data         0000000c  20000000  08005754  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000038c  2000000c  080057b4  0002000c  2**2
+  9 .bss          0000038c  2000000c  08005760  0002000c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000398  080057b4  00020398  2**0
+ 10 ._user_heap_stack 00000600  20000398  08005760  00020398  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000db05  00000000  00000000  0002003c  2**0
+ 12 .debug_info   0000dadd  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001f99  00000000  00000000  0002db41  2**0
+ 13 .debug_abbrev 00001f99  00000000  00000000  0002db19  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a90  00000000  00000000  0002fae0  2**3
+ 14 .debug_aranges 00000a90  00000000  00000000  0002fab8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 000009e0  00000000  00000000  00030570  2**3
+ 15 .debug_ranges 000009e0  00000000  00000000  00030548  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00015912  00000000  00000000  00030f50  2**0
+ 16 .debug_macro  00015c66  00000000  00000000  00030f28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000e5a7  00000000  00000000  00046862  2**0
+ 17 .debug_line   0000e580  00000000  00000000  00046b8e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00083ae2  00000000  00000000  00054e09  2**0
+ 18 .debug_str    00084018  00000000  00000000  0005510e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000d88eb  2**0
+ 19 .comment      00000053  00000000  00000000  000d9126  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002a60  00000000  00000000  000d8940  2**2
+ 20 .debug_frame  00002a5c  00000000  00000000  000d917c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  80001aa:	bd10      	pop	{r4, pc}
  80001ac:	2000000c 	.word	0x2000000c
  80001b0:	00000000 	.word	0x00000000
- 80001b4:	08005720 	.word	0x08005720
+ 80001b4:	080056cc 	.word	0x080056cc
 
 080001b8 <frame_dummy>:
  80001b8:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  80001c6:	bd08      	pop	{r3, pc}
  80001c8:	00000000 	.word	0x00000000
  80001cc:	20000010 	.word	0x20000010
- 80001d0:	08005720 	.word	0x08005720
+ 80001d0:	080056cc 	.word	0x080056cc
 
 080001d4 <__aeabi_uldivmod>:
  80001d4:	b953      	cbnz	r3, 80001ec <__aeabi_uldivmod+0x18>
@@ -1181,7 +1181,7 @@ void SystemClock_Config(void)
  80009a2:	2230      	movs	r2, #48	; 0x30
  80009a4:	2100      	movs	r1, #0
  80009a6:	4618      	mov	r0, r3
- 80009a8:	f004 feb2 	bl	8005710 <memset>
+ 80009a8:	f004 fe88 	bl	80056bc <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  80009ac:	f107 030c 	add.w	r3, r7, #12
  80009b0:	2200      	movs	r2, #0
@@ -1924,7 +1924,7 @@ LoopFillZerobss:
  8000cc6:	f7ff ff53 	bl	8000b70 <SystemInit>
 /* Call static constructors */
     bl __libc_init_array
- 8000cca:	f004 fcfd 	bl	80056c8 <__libc_init_array>
+ 8000cca:	f004 fcd3 	bl	8005674 <__libc_init_array>
 /* Call the application's entry point.*/
   bl  main
  8000cce:	f7ff fe4f 	bl	8000970 <main>
@@ -1937,7 +1937,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8000cdc:	2000000c 	.word	0x2000000c
   ldr r2, =_sidata
- 8000ce0:	080057a8 	.word	0x080057a8
+ 8000ce0:	08005754 	.word	0x08005754
   ldr r2, =_sbss
  8000ce4:	2000000c 	.word	0x2000000c
   ldr r4, =_ebss
@@ -3810,7 +3810,7 @@ static uint32_t DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
  8001694:	4770      	bx	lr
  8001696:	bf00      	nop
  8001698:	aaaaaaab 	.word	0xaaaaaaab
- 800169c:	08005790 	.word	0x08005790
+ 800169c:	0800573c 	.word	0x0800573c
 
 080016a0 <DMA_CheckFifoParam>:
   * @param  hdma       pointer to a DMA_HandleTypeDef structure that contains
@@ -12848,7 +12848,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8004ada:	bf00      	nop
  8004adc:	40023c00 	.word	0x40023c00
  8004ae0:	40023800 	.word	0x40023800
- 8004ae4:	08005778 	.word	0x08005778
+ 8004ae4:	08005724 	.word	0x08005724
  8004ae8:	20000000 	.word	0x20000000
  8004aec:	20000004 	.word	0x20000004
 
@@ -13117,7 +13117,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8004ce8:	4618      	mov	r0, r3
  8004cea:	bd80      	pop	{r7, pc}
  8004cec:	40023800 	.word	0x40023800
- 8004cf0:	08005788 	.word	0x08005788
+ 8004cf0:	08005734 	.word	0x08005734
 
 08004cf4 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -13143,7 +13143,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8004d10:	4618      	mov	r0, r3
  8004d12:	bd80      	pop	{r7, pc}
  8004d14:	40023800 	.word	0x40023800
- 8004d18:	08005788 	.word	0x08005788
+ 8004d18:	08005734 	.word	0x08005734
 
 08004d1c <HAL_UART_Init>:
   * @param  huart  Pointer to a UART_HandleTypeDef structure that contains
@@ -14101,6 +14101,9 @@ static void imu_Error(void)
  80053a4:	20000194 	.word	0x20000194
 
 080053a8 <MPU6050_configureRegisters>:
+//	//wait Tx end
+//	while (MPU6050.FlagTxEnd == 0);
+//}
 
 static uint8_t MPU6050_configureRegisters(void)
 {
@@ -14288,9 +14291,9 @@ void MPU6050_init(void)
  80054e8:	08005389 	.word	0x08005389
  80054ec:	40020000 	.word	0x40020000
  80054f0:	20000194 	.word	0x20000194
- 80054f4:	08005738 	.word	0x08005738
- 80054f8:	0800574c 	.word	0x0800574c
- 80054fc:	08005760 	.word	0x08005760
+ 80054f4:	080056e4 	.word	0x080056e4
+ 80054f8:	080056f8 	.word	0x080056f8
+ 80054fc:	0800570c 	.word	0x0800570c
 
 08005500 <MPU6050_sendFrame>:
 
@@ -14302,20 +14305,20 @@ void MPU6050_sendFrame(uint8_t* pData, uint8_t size)
  8005506:	6078      	str	r0, [r7, #4]
  8005508:	460b      	mov	r3, r1
  800550a:	70fb      	strb	r3, [r7, #3]
-	pData[size] = CRC8(pData, size);
+	pData[size - 1] = CRC8(pData, size - 1);
  800550c:	78fb      	ldrb	r3, [r7, #3]
- 800550e:	687a      	ldr	r2, [r7, #4]
- 8005510:	18d4      	adds	r4, r2, r3
+ 800550e:	3b01      	subs	r3, #1
+ 8005510:	b2d9      	uxtb	r1, r3
  8005512:	78fb      	ldrb	r3, [r7, #3]
- 8005514:	4619      	mov	r1, r3
- 8005516:	6878      	ldr	r0, [r7, #4]
- 8005518:	f000 f80e 	bl	8005538 <CRC8>
- 800551c:	4603      	mov	r3, r0
- 800551e:	7023      	strb	r3, [r4, #0]
-	MX_USART2_Transmit(pData, size+1);
- 8005520:	78fb      	ldrb	r3, [r7, #3]
- 8005522:	b29b      	uxth	r3, r3
- 8005524:	3301      	adds	r3, #1
+ 8005514:	3b01      	subs	r3, #1
+ 8005516:	687a      	ldr	r2, [r7, #4]
+ 8005518:	18d4      	adds	r4, r2, r3
+ 800551a:	6878      	ldr	r0, [r7, #4]
+ 800551c:	f000 f80c 	bl	8005538 <CRC8>
+ 8005520:	4603      	mov	r3, r0
+ 8005522:	7023      	strb	r3, [r4, #0]
+	MX_USART2_Transmit(pData, size);
+ 8005524:	78fb      	ldrb	r3, [r7, #3]
  8005526:	b29b      	uxth	r3, r3
  8005528:	4619      	mov	r1, r3
  800552a:	6878      	ldr	r0, [r7, #4]
@@ -14375,223 +14378,193 @@ uint8_t CRC8(uint8_t* pData, uint8_t size)
 void MPU6050_main(void)
 {
  8005578:	b580      	push	{r7, lr}
- 800557a:	b0a0      	sub	sp, #128	; 0x80
+ 800557a:	b084      	sub	sp, #16
  800557c:	af00      	add	r7, sp, #0
 	Frame frame;
 	switch (MPU6050.sState)
- 800557e:	4b51      	ldr	r3, [pc, #324]	; (80056c4 <MPU6050_main+0x14c>)
+ 800557e:	4b3c      	ldr	r3, [pc, #240]	; (8005670 <MPU6050_main+0xf8>)
  8005580:	f893 3201 	ldrb.w	r3, [r3, #513]	; 0x201
  8005584:	2b00      	cmp	r3, #0
- 8005586:	f000 8097 	beq.w	80056b8 <MPU6050_main+0x140>
- 800558a:	2b01      	cmp	r3, #1
- 800558c:	d000      	beq.n	8005590 <MPU6050_main+0x18>
+ 8005586:	d06e      	beq.n	8005666 <MPU6050_main+0xee>
+ 8005588:	2b01      	cmp	r3, #1
+ 800558a:	d000      	beq.n	800558e <MPU6050_main+0x16>
 			}
 			MPU6050_sendFrame((uint8_t*)&frame, sizeof(frame));
 			break;
 	}
 
 }
- 800558e:	e094      	b.n	80056ba <MPU6050_main+0x142>
+ 800558c:	e06c      	b.n	8005668 <MPU6050_main+0xf0>
 			frame.header = 0x55;
- 8005590:	2355      	movs	r3, #85	; 0x55
- 8005592:	703b      	strb	r3, [r7, #0]
-			for(uint8_t i = 0; i < SIZE_DATA; ++i)
- 8005594:	2300      	movs	r3, #0
- 8005596:	f887 307f 	strb.w	r3, [r7, #127]	; 0x7f
- 800559a:	e082      	b.n	80056a2 <MPU6050_main+0x12a>
+ 800558e:	2355      	movs	r3, #85	; 0x55
+ 8005590:	703b      	strb	r3, [r7, #0]
+			for(uint8_t i = 0; i < SIZE_DATA * 2; i+=2)
+ 8005592:	2300      	movs	r3, #0
+ 8005594:	73fb      	strb	r3, [r7, #15]
+ 8005596:	e05d      	b.n	8005654 <MPU6050_main+0xdc>
 				MPU6050.FlagRxEnd = 0;
- 800559c:	4a49      	ldr	r2, [pc, #292]	; (80056c4 <MPU6050_main+0x14c>)
- 800559e:	f892 3200 	ldrb.w	r3, [r2, #512]	; 0x200
- 80055a2:	f36f 0300 	bfc	r3, #0, #1
- 80055a6:	f882 3200 	strb.w	r3, [r2, #512]	; 0x200
+ 8005598:	4a35      	ldr	r2, [pc, #212]	; (8005670 <MPU6050_main+0xf8>)
+ 800559a:	f892 3200 	ldrb.w	r3, [r2, #512]	; 0x200
+ 800559e:	f36f 0300 	bfc	r3, #0, #1
+ 80055a2:	f882 3200 	strb.w	r3, [r2, #512]	; 0x200
 				MPU6050.RxBuffer[0] = 0;
- 80055aa:	4b46      	ldr	r3, [pc, #280]	; (80056c4 <MPU6050_main+0x14c>)
- 80055ac:	2200      	movs	r2, #0
- 80055ae:	701a      	strb	r2, [r3, #0]
+ 80055a6:	4b32      	ldr	r3, [pc, #200]	; (8005670 <MPU6050_main+0xf8>)
+ 80055a8:	2200      	movs	r2, #0
+ 80055aa:	701a      	strb	r2, [r3, #0]
 				MPU6050.RxBuffer[1] = 0;
- 80055b0:	4b44      	ldr	r3, [pc, #272]	; (80056c4 <MPU6050_main+0x14c>)
- 80055b2:	2200      	movs	r2, #0
- 80055b4:	705a      	strb	r2, [r3, #1]
+ 80055ac:	4b30      	ldr	r3, [pc, #192]	; (8005670 <MPU6050_main+0xf8>)
+ 80055ae:	2200      	movs	r2, #0
+ 80055b0:	705a      	strb	r2, [r3, #1]
 				MPU6050.RxBuffer[2] = 0;
- 80055b6:	4b43      	ldr	r3, [pc, #268]	; (80056c4 <MPU6050_main+0x14c>)
- 80055b8:	2200      	movs	r2, #0
- 80055ba:	709a      	strb	r2, [r3, #2]
+ 80055b2:	4b2f      	ldr	r3, [pc, #188]	; (8005670 <MPU6050_main+0xf8>)
+ 80055b4:	2200      	movs	r2, #0
+ 80055b6:	709a      	strb	r2, [r3, #2]
 				MPU6050.RxBuffer[3] = 0;
- 80055bc:	4b41      	ldr	r3, [pc, #260]	; (80056c4 <MPU6050_main+0x14c>)
- 80055be:	2200      	movs	r2, #0
- 80055c0:	70da      	strb	r2, [r3, #3]
+ 80055b8:	4b2d      	ldr	r3, [pc, #180]	; (8005670 <MPU6050_main+0xf8>)
+ 80055ba:	2200      	movs	r2, #0
+ 80055bc:	70da      	strb	r2, [r3, #3]
 				MPU6050.RxBuffer[4] = 0;
- 80055c2:	4b40      	ldr	r3, [pc, #256]	; (80056c4 <MPU6050_main+0x14c>)
- 80055c4:	2200      	movs	r2, #0
- 80055c6:	711a      	strb	r2, [r3, #4]
+ 80055be:	4b2c      	ldr	r3, [pc, #176]	; (8005670 <MPU6050_main+0xf8>)
+ 80055c0:	2200      	movs	r2, #0
+ 80055c2:	711a      	strb	r2, [r3, #4]
 				MPU6050.RxBuffer[5] = 0;
- 80055c8:	4b3e      	ldr	r3, [pc, #248]	; (80056c4 <MPU6050_main+0x14c>)
- 80055ca:	2200      	movs	r2, #0
- 80055cc:	715a      	strb	r2, [r3, #5]
+ 80055c4:	4b2a      	ldr	r3, [pc, #168]	; (8005670 <MPU6050_main+0xf8>)
+ 80055c6:	2200      	movs	r2, #0
+ 80055c8:	715a      	strb	r2, [r3, #5]
 				MX_I2C1_Mem_Read(ACCEL_XOUT_H, 1, MPU6050.RxBuffer, 6);
- 80055ce:	2306      	movs	r3, #6
- 80055d0:	4a3c      	ldr	r2, [pc, #240]	; (80056c4 <MPU6050_main+0x14c>)
- 80055d2:	2101      	movs	r1, #1
- 80055d4:	203b      	movs	r0, #59	; 0x3b
- 80055d6:	f7fb f947 	bl	8000868 <MX_I2C1_Mem_Read>
+ 80055ca:	2306      	movs	r3, #6
+ 80055cc:	4a28      	ldr	r2, [pc, #160]	; (8005670 <MPU6050_main+0xf8>)
+ 80055ce:	2101      	movs	r1, #1
+ 80055d0:	203b      	movs	r0, #59	; 0x3b
+ 80055d2:	f7fb f949 	bl	8000868 <MX_I2C1_Mem_Read>
 				while (MPU6050.FlagRxEnd == 0);
- 80055da:	bf00      	nop
- 80055dc:	4b39      	ldr	r3, [pc, #228]	; (80056c4 <MPU6050_main+0x14c>)
- 80055de:	f893 3200 	ldrb.w	r3, [r3, #512]	; 0x200
- 80055e2:	f003 0301 	and.w	r3, r3, #1
- 80055e6:	b2db      	uxtb	r3, r3
- 80055e8:	2b00      	cmp	r3, #0
- 80055ea:	d0f7      	beq.n	80055dc <MPU6050_main+0x64>
-				frame.accX[i] = (MPU6050.RxBuffer[0] << 8) + MPU6050.RxBuffer[1];
- 80055ec:	4b35      	ldr	r3, [pc, #212]	; (80056c4 <MPU6050_main+0x14c>)
- 80055ee:	781b      	ldrb	r3, [r3, #0]
- 80055f0:	b29b      	uxth	r3, r3
- 80055f2:	021b      	lsls	r3, r3, #8
- 80055f4:	b299      	uxth	r1, r3
- 80055f6:	4b33      	ldr	r3, [pc, #204]	; (80056c4 <MPU6050_main+0x14c>)
- 80055f8:	785b      	ldrb	r3, [r3, #1]
- 80055fa:	b29a      	uxth	r2, r3
- 80055fc:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 8005600:	440a      	add	r2, r1
- 8005602:	b292      	uxth	r2, r2
- 8005604:	005b      	lsls	r3, r3, #1
- 8005606:	f107 0180 	add.w	r1, r7, #128	; 0x80
- 800560a:	440b      	add	r3, r1
- 800560c:	f823 2c7e 	strh.w	r2, [r3, #-126]
-				frame.accY[i] = (MPU6050.RxBuffer[2] << 8) + MPU6050.RxBuffer[3];
- 8005610:	4b2c      	ldr	r3, [pc, #176]	; (80056c4 <MPU6050_main+0x14c>)
- 8005612:	789b      	ldrb	r3, [r3, #2]
- 8005614:	b29b      	uxth	r3, r3
- 8005616:	021b      	lsls	r3, r3, #8
- 8005618:	b299      	uxth	r1, r3
- 800561a:	4b2a      	ldr	r3, [pc, #168]	; (80056c4 <MPU6050_main+0x14c>)
- 800561c:	78db      	ldrb	r3, [r3, #3]
- 800561e:	b29a      	uxth	r2, r3
- 8005620:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 8005624:	440a      	add	r2, r1
- 8005626:	b292      	uxth	r2, r2
- 8005628:	3308      	adds	r3, #8
- 800562a:	005b      	lsls	r3, r3, #1
- 800562c:	f107 0180 	add.w	r1, r7, #128	; 0x80
- 8005630:	440b      	add	r3, r1
- 8005632:	f823 2c7a 	strh.w	r2, [r3, #-122]
-				frame.accZ[i] = (MPU6050.RxBuffer[4] << 8) + MPU6050.RxBuffer[5];
- 8005636:	4b23      	ldr	r3, [pc, #140]	; (80056c4 <MPU6050_main+0x14c>)
- 8005638:	791b      	ldrb	r3, [r3, #4]
- 800563a:	b29b      	uxth	r3, r3
- 800563c:	021b      	lsls	r3, r3, #8
- 800563e:	b299      	uxth	r1, r3
- 8005640:	4b20      	ldr	r3, [pc, #128]	; (80056c4 <MPU6050_main+0x14c>)
- 8005642:	795b      	ldrb	r3, [r3, #5]
- 8005644:	b29a      	uxth	r2, r3
- 8005646:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 800564a:	440a      	add	r2, r1
- 800564c:	b292      	uxth	r2, r2
- 800564e:	3314      	adds	r3, #20
- 8005650:	005b      	lsls	r3, r3, #1
- 8005652:	f107 0180 	add.w	r1, r7, #128	; 0x80
- 8005656:	440b      	add	r3, r1
- 8005658:	f823 2c7e 	strh.w	r2, [r3, #-126]
-				frame.gyroX[i] = 0x0000;
- 800565c:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 8005660:	331c      	adds	r3, #28
- 8005662:	005b      	lsls	r3, r3, #1
- 8005664:	f107 0280 	add.w	r2, r7, #128	; 0x80
- 8005668:	4413      	add	r3, r2
- 800566a:	2200      	movs	r2, #0
- 800566c:	f823 2c7a 	strh.w	r2, [r3, #-122]
-				frame.gyroY[i] = 0x0000;
- 8005670:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 8005674:	3328      	adds	r3, #40	; 0x28
- 8005676:	005b      	lsls	r3, r3, #1
- 8005678:	f107 0280 	add.w	r2, r7, #128	; 0x80
- 800567c:	4413      	add	r3, r2
- 800567e:	2200      	movs	r2, #0
- 8005680:	f823 2c7e 	strh.w	r2, [r3, #-126]
-				frame.gyroZ[i] = 0x0000;
- 8005684:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 8005688:	3330      	adds	r3, #48	; 0x30
- 800568a:	005b      	lsls	r3, r3, #1
- 800568c:	f107 0280 	add.w	r2, r7, #128	; 0x80
- 8005690:	4413      	add	r3, r2
- 8005692:	2200      	movs	r2, #0
- 8005694:	f823 2c7a 	strh.w	r2, [r3, #-122]
-			for(uint8_t i = 0; i < SIZE_DATA; ++i)
- 8005698:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 800569c:	3301      	adds	r3, #1
- 800569e:	f887 307f 	strb.w	r3, [r7, #127]	; 0x7f
- 80056a2:	f897 307f 	ldrb.w	r3, [r7, #127]	; 0x7f
- 80056a6:	2b09      	cmp	r3, #9
- 80056a8:	f67f af78 	bls.w	800559c <MPU6050_main+0x24>
+ 80055d6:	bf00      	nop
+ 80055d8:	4b25      	ldr	r3, [pc, #148]	; (8005670 <MPU6050_main+0xf8>)
+ 80055da:	f893 3200 	ldrb.w	r3, [r3, #512]	; 0x200
+ 80055de:	f003 0301 	and.w	r3, r3, #1
+ 80055e2:	b2db      	uxtb	r3, r3
+ 80055e4:	2b00      	cmp	r3, #0
+ 80055e6:	d0f7      	beq.n	80055d8 <MPU6050_main+0x60>
+				frame.accX[i] = MPU6050.RxBuffer[0];
+ 80055e8:	7bfb      	ldrb	r3, [r7, #15]
+ 80055ea:	4a21      	ldr	r2, [pc, #132]	; (8005670 <MPU6050_main+0xf8>)
+ 80055ec:	7812      	ldrb	r2, [r2, #0]
+ 80055ee:	f107 0110 	add.w	r1, r7, #16
+ 80055f2:	440b      	add	r3, r1
+ 80055f4:	f803 2c0f 	strb.w	r2, [r3, #-15]
+				frame.accX[i+1] = MPU6050.RxBuffer[1];
+ 80055f8:	7bfb      	ldrb	r3, [r7, #15]
+ 80055fa:	3301      	adds	r3, #1
+ 80055fc:	4a1c      	ldr	r2, [pc, #112]	; (8005670 <MPU6050_main+0xf8>)
+ 80055fe:	7852      	ldrb	r2, [r2, #1]
+ 8005600:	f107 0110 	add.w	r1, r7, #16
+ 8005604:	440b      	add	r3, r1
+ 8005606:	f803 2c0f 	strb.w	r2, [r3, #-15]
+				frame.accY[i] = MPU6050.RxBuffer[2];
+ 800560a:	7bfb      	ldrb	r3, [r7, #15]
+ 800560c:	4a18      	ldr	r2, [pc, #96]	; (8005670 <MPU6050_main+0xf8>)
+ 800560e:	7892      	ldrb	r2, [r2, #2]
+ 8005610:	f107 0110 	add.w	r1, r7, #16
+ 8005614:	440b      	add	r3, r1
+ 8005616:	f803 2c0b 	strb.w	r2, [r3, #-11]
+				frame.accY[i+1] = MPU6050.RxBuffer[3];
+ 800561a:	7bfb      	ldrb	r3, [r7, #15]
+ 800561c:	3301      	adds	r3, #1
+ 800561e:	4a14      	ldr	r2, [pc, #80]	; (8005670 <MPU6050_main+0xf8>)
+ 8005620:	78d2      	ldrb	r2, [r2, #3]
+ 8005622:	f107 0110 	add.w	r1, r7, #16
+ 8005626:	440b      	add	r3, r1
+ 8005628:	f803 2c0b 	strb.w	r2, [r3, #-11]
+				frame.accZ[i] = MPU6050.RxBuffer[4];
+ 800562c:	7bfb      	ldrb	r3, [r7, #15]
+ 800562e:	4a10      	ldr	r2, [pc, #64]	; (8005670 <MPU6050_main+0xf8>)
+ 8005630:	7912      	ldrb	r2, [r2, #4]
+ 8005632:	f107 0110 	add.w	r1, r7, #16
+ 8005636:	440b      	add	r3, r1
+ 8005638:	f803 2c07 	strb.w	r2, [r3, #-7]
+				frame.accZ[i+1] = MPU6050.RxBuffer[5];
+ 800563c:	7bfb      	ldrb	r3, [r7, #15]
+ 800563e:	3301      	adds	r3, #1
+ 8005640:	4a0b      	ldr	r2, [pc, #44]	; (8005670 <MPU6050_main+0xf8>)
+ 8005642:	7952      	ldrb	r2, [r2, #5]
+ 8005644:	f107 0110 	add.w	r1, r7, #16
+ 8005648:	440b      	add	r3, r1
+ 800564a:	f803 2c07 	strb.w	r2, [r3, #-7]
+			for(uint8_t i = 0; i < SIZE_DATA * 2; i+=2)
+ 800564e:	7bfb      	ldrb	r3, [r7, #15]
+ 8005650:	3302      	adds	r3, #2
+ 8005652:	73fb      	strb	r3, [r7, #15]
+ 8005654:	7bfb      	ldrb	r3, [r7, #15]
+ 8005656:	2b03      	cmp	r3, #3
+ 8005658:	d99e      	bls.n	8005598 <MPU6050_main+0x20>
 			MPU6050_sendFrame((uint8_t*)&frame, sizeof(frame));
- 80056ac:	463b      	mov	r3, r7
- 80056ae:	217c      	movs	r1, #124	; 0x7c
- 80056b0:	4618      	mov	r0, r3
- 80056b2:	f7ff ff25 	bl	8005500 <MPU6050_sendFrame>
+ 800565a:	463b      	mov	r3, r7
+ 800565c:	210e      	movs	r1, #14
+ 800565e:	4618      	mov	r0, r3
+ 8005660:	f7ff ff4e 	bl	8005500 <MPU6050_sendFrame>
 			break;
- 80056b6:	e000      	b.n	80056ba <MPU6050_main+0x142>
+ 8005664:	e000      	b.n	8005668 <MPU6050_main+0xf0>
 			break;
- 80056b8:	bf00      	nop
+ 8005666:	bf00      	nop
 }
- 80056ba:	bf00      	nop
- 80056bc:	3780      	adds	r7, #128	; 0x80
- 80056be:	46bd      	mov	sp, r7
- 80056c0:	bd80      	pop	{r7, pc}
- 80056c2:	bf00      	nop
- 80056c4:	20000194 	.word	0x20000194
+ 8005668:	bf00      	nop
+ 800566a:	3710      	adds	r7, #16
+ 800566c:	46bd      	mov	sp, r7
+ 800566e:	bd80      	pop	{r7, pc}
+ 8005670:	20000194 	.word	0x20000194
 
-080056c8 <__libc_init_array>:
- 80056c8:	b570      	push	{r4, r5, r6, lr}
- 80056ca:	4d0d      	ldr	r5, [pc, #52]	; (8005700 <__libc_init_array+0x38>)
- 80056cc:	4c0d      	ldr	r4, [pc, #52]	; (8005704 <__libc_init_array+0x3c>)
- 80056ce:	1b64      	subs	r4, r4, r5
- 80056d0:	10a4      	asrs	r4, r4, #2
- 80056d2:	2600      	movs	r6, #0
- 80056d4:	42a6      	cmp	r6, r4
- 80056d6:	d109      	bne.n	80056ec <__libc_init_array+0x24>
- 80056d8:	4d0b      	ldr	r5, [pc, #44]	; (8005708 <__libc_init_array+0x40>)
- 80056da:	4c0c      	ldr	r4, [pc, #48]	; (800570c <__libc_init_array+0x44>)
- 80056dc:	f000 f820 	bl	8005720 <_init>
- 80056e0:	1b64      	subs	r4, r4, r5
- 80056e2:	10a4      	asrs	r4, r4, #2
- 80056e4:	2600      	movs	r6, #0
- 80056e6:	42a6      	cmp	r6, r4
- 80056e8:	d105      	bne.n	80056f6 <__libc_init_array+0x2e>
- 80056ea:	bd70      	pop	{r4, r5, r6, pc}
- 80056ec:	f855 3b04 	ldr.w	r3, [r5], #4
- 80056f0:	4798      	blx	r3
- 80056f2:	3601      	adds	r6, #1
- 80056f4:	e7ee      	b.n	80056d4 <__libc_init_array+0xc>
- 80056f6:	f855 3b04 	ldr.w	r3, [r5], #4
- 80056fa:	4798      	blx	r3
- 80056fc:	3601      	adds	r6, #1
- 80056fe:	e7f2      	b.n	80056e6 <__libc_init_array+0x1e>
- 8005700:	080057a0 	.word	0x080057a0
- 8005704:	080057a0 	.word	0x080057a0
- 8005708:	080057a0 	.word	0x080057a0
- 800570c:	080057a4 	.word	0x080057a4
+08005674 <__libc_init_array>:
+ 8005674:	b570      	push	{r4, r5, r6, lr}
+ 8005676:	4d0d      	ldr	r5, [pc, #52]	; (80056ac <__libc_init_array+0x38>)
+ 8005678:	4c0d      	ldr	r4, [pc, #52]	; (80056b0 <__libc_init_array+0x3c>)
+ 800567a:	1b64      	subs	r4, r4, r5
+ 800567c:	10a4      	asrs	r4, r4, #2
+ 800567e:	2600      	movs	r6, #0
+ 8005680:	42a6      	cmp	r6, r4
+ 8005682:	d109      	bne.n	8005698 <__libc_init_array+0x24>
+ 8005684:	4d0b      	ldr	r5, [pc, #44]	; (80056b4 <__libc_init_array+0x40>)
+ 8005686:	4c0c      	ldr	r4, [pc, #48]	; (80056b8 <__libc_init_array+0x44>)
+ 8005688:	f000 f820 	bl	80056cc <_init>
+ 800568c:	1b64      	subs	r4, r4, r5
+ 800568e:	10a4      	asrs	r4, r4, #2
+ 8005690:	2600      	movs	r6, #0
+ 8005692:	42a6      	cmp	r6, r4
+ 8005694:	d105      	bne.n	80056a2 <__libc_init_array+0x2e>
+ 8005696:	bd70      	pop	{r4, r5, r6, pc}
+ 8005698:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800569c:	4798      	blx	r3
+ 800569e:	3601      	adds	r6, #1
+ 80056a0:	e7ee      	b.n	8005680 <__libc_init_array+0xc>
+ 80056a2:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80056a6:	4798      	blx	r3
+ 80056a8:	3601      	adds	r6, #1
+ 80056aa:	e7f2      	b.n	8005692 <__libc_init_array+0x1e>
+ 80056ac:	0800574c 	.word	0x0800574c
+ 80056b0:	0800574c 	.word	0x0800574c
+ 80056b4:	0800574c 	.word	0x0800574c
+ 80056b8:	08005750 	.word	0x08005750
 
-08005710 <memset>:
- 8005710:	4402      	add	r2, r0
- 8005712:	4603      	mov	r3, r0
- 8005714:	4293      	cmp	r3, r2
- 8005716:	d100      	bne.n	800571a <memset+0xa>
- 8005718:	4770      	bx	lr
- 800571a:	f803 1b01 	strb.w	r1, [r3], #1
- 800571e:	e7f9      	b.n	8005714 <memset+0x4>
+080056bc <memset>:
+ 80056bc:	4402      	add	r2, r0
+ 80056be:	4603      	mov	r3, r0
+ 80056c0:	4293      	cmp	r3, r2
+ 80056c2:	d100      	bne.n	80056c6 <memset+0xa>
+ 80056c4:	4770      	bx	lr
+ 80056c6:	f803 1b01 	strb.w	r1, [r3], #1
+ 80056ca:	e7f9      	b.n	80056c0 <memset+0x4>
 
-08005720 <_init>:
- 8005720:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005722:	bf00      	nop
- 8005724:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005726:	bc08      	pop	{r3}
- 8005728:	469e      	mov	lr, r3
- 800572a:	4770      	bx	lr
+080056cc <_init>:
+ 80056cc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80056ce:	bf00      	nop
+ 80056d0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80056d2:	bc08      	pop	{r3}
+ 80056d4:	469e      	mov	lr, r3
+ 80056d6:	4770      	bx	lr
 
-0800572c <_fini>:
- 800572c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800572e:	bf00      	nop
- 8005730:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005732:	bc08      	pop	{r3}
- 8005734:	469e      	mov	lr, r3
- 8005736:	4770      	bx	lr
+080056d8 <_fini>:
+ 80056d8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80056da:	bf00      	nop
+ 80056dc:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80056de:	bc08      	pop	{r3}
+ 80056e0:	469e      	mov	lr, r3
+ 80056e2:	4770      	bx	lr

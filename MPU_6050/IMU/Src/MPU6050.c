@@ -11,19 +11,18 @@
 #include "usart.h"
 
 /* Defines */
-#define SIZE_DATA 10
-
+#define SIZE_DATA 2
 /* variables */
 MPU6050_st MPU6050;
 
 typedef struct {
 	uint8_t header;
-	uint16_t accX[SIZE_DATA];
-	uint16_t accY[SIZE_DATA];
-	uint16_t accZ[SIZE_DATA];
-	uint16_t gyroX[SIZE_DATA];
-	uint16_t gyroY[SIZE_DATA];
-	uint16_t gyroZ[SIZE_DATA];
+	uint8_t accX[SIZE_DATA * 2];
+	uint8_t accY[SIZE_DATA * 2];
+	uint8_t accZ[SIZE_DATA * 2];
+//	uint16_t gyroX[SIZE_DATA];
+//	uint16_t gyroY[SIZE_DATA];
+//	uint16_t gyroZ[SIZE_DATA];
 	uint8_t crc;
 } Frame;
 
@@ -49,6 +48,14 @@ static void imu_Error(void)
 {
 	MPU6050.FlagError = 1;
 }
+
+//static void MPU6050_writeRegister(uint16_t adress, uitn8_t * pcBuf, uint8_t len)
+//{
+//	MPU6050.FlagTxEnd = 0;
+//	MX_I2C1_Mem_Write(adress, 1, pcBuf, len);
+//	//wait Tx end
+//	while (MPU6050.FlagTxEnd == 0);
+//}
 
 static uint8_t MPU6050_configureRegisters(void)
 {
@@ -109,8 +116,8 @@ void MPU6050_init(void)
 
 void MPU6050_sendFrame(uint8_t* pData, uint8_t size)
 {
-	pData[size] = CRC8(pData, size);
-	MX_USART2_Transmit(pData, size+1);
+	pData[size - 1] = CRC8(pData, size - 1);
+	MX_USART2_Transmit(pData, size);
 }
 
 uint8_t CRC8(uint8_t* pData, uint8_t size)
@@ -133,7 +140,7 @@ void MPU6050_main(void)
 		case MPU6050_RUNNING:
 			// Flags init
 			frame.header = 0x55;
-			for(uint8_t i = 0; i < SIZE_DATA; ++i)
+			for(uint8_t i = 0; i < SIZE_DATA * 2; i+=2)
 			{
 				MPU6050.FlagRxEnd = 0;
 				MPU6050.RxBuffer[0] = 0;
@@ -144,12 +151,29 @@ void MPU6050_main(void)
 				MPU6050.RxBuffer[5] = 0;
 				MX_I2C1_Mem_Read(ACCEL_XOUT_H, 1, MPU6050.RxBuffer, 6);
 				while (MPU6050.FlagRxEnd == 0);
-				frame.accX[i] = (MPU6050.RxBuffer[0] << 8) + MPU6050.RxBuffer[1];
-				frame.accY[i] = (MPU6050.RxBuffer[2] << 8) + MPU6050.RxBuffer[3];
-				frame.accZ[i] = (MPU6050.RxBuffer[4] << 8) + MPU6050.RxBuffer[5];
-				frame.gyroX[i] = 0x0000;
-				frame.gyroY[i] = 0x0000;
-				frame.gyroZ[i] = 0x0000;
+				//accX
+				// H byte
+				frame.accX[i] = MPU6050.RxBuffer[0];
+				// L byte
+				frame.accX[i+1] = MPU6050.RxBuffer[1];
+
+				//accY
+				// H byte
+				frame.accY[i] = MPU6050.RxBuffer[2];
+				// L byte
+				frame.accY[i+1] = MPU6050.RxBuffer[3];
+
+				//accZ
+				// H byte
+				frame.accZ[i] = MPU6050.RxBuffer[4];
+				// L byte
+				frame.accZ[i+1] = MPU6050.RxBuffer[5];
+
+//				frame.accY[i] = (MPU6050.RxBuffer[2] << 8) + MPU6050.RxBuffer[3];
+//				frame.accZ[i] = (MPU6050.RxBuffer[4] << 8) + MPU6050.RxBuffer[5];
+//				frame.gyroX[i] = 0x0000;
+//				frame.gyroY[i] = 0x0000;
+//				frame.gyroZ[i] = 0x0000;
 			}
 			MPU6050_sendFrame((uint8_t*)&frame, sizeof(frame));
 			break;

@@ -1,7 +1,7 @@
 MPU6050.c:37:13:imu_TxEnd	0	static
 MPU6050.c:43:13:imu_RxEnd	0	static
 MPU6050.c:48:13:imu_Error	0	static
-MPU6050.c:68:6:MPU6050_init	32	static
-MPU6050.c:116:9:CRC8	0	static
-MPU6050.c:110:6:MPU6050_sendFrame	16	static
-MPU6050.c:126:6:MPU6050_main	152	static
+MPU6050.c:76:6:MPU6050_init	32	static
+MPU6050.c:124:9:CRC8	0	static
+MPU6050.c:118:6:MPU6050_sendFrame	16	static
+MPU6050.c:134:6:MPU6050_main	32	static
