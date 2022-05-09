@@ -20,9 +20,9 @@ typedef struct {
 	uint8_t accX[SIZE_DATA * 2];
 	uint8_t accY[SIZE_DATA * 2];
 	uint8_t accZ[SIZE_DATA * 2];
-//	uint16_t gyroX[SIZE_DATA];
-//	uint16_t gyroY[SIZE_DATA];
-//	uint16_t gyroZ[SIZE_DATA];
+	uint8_t gyroX[SIZE_DATA * 2];
+	uint8_t gyroY[SIZE_DATA * 2];
+	uint8_t gyroZ[SIZE_DATA * 2];
 	uint8_t crc;
 } Frame;
 
@@ -169,13 +169,39 @@ void MPU6050_main(void)
 				// L byte
 				frame.accZ[i+1] = MPU6050.RxBuffer[5];
 
-//				frame.accY[i] = (MPU6050.RxBuffer[2] << 8) + MPU6050.RxBuffer[3];
-//				frame.accZ[i] = (MPU6050.RxBuffer[4] << 8) + MPU6050.RxBuffer[5];
-//				frame.gyroX[i] = 0x0000;
-//				frame.gyroY[i] = 0x0000;
-//				frame.gyroZ[i] = 0x0000;
+				MPU6050.FlagRxEnd = 0;
+				MPU6050.RxBuffer[0] = 0;
+				MPU6050.RxBuffer[1] = 0;
+				MPU6050.RxBuffer[2] = 0;
+				MPU6050.RxBuffer[3] = 0;
+				MPU6050.RxBuffer[4] = 0;
+				MPU6050.RxBuffer[5] = 0;
+				MX_I2C1_Mem_Read(GYRO_XOUT_H, 1, MPU6050.RxBuffer, 6);
+				while (MPU6050.FlagRxEnd == 0);
+
+				//gyroX
+				// H byte
+				frame.gyroX[i] = MPU6050.RxBuffer[0];
+				// L byte
+				frame.gyroX[i+1] = MPU6050.RxBuffer[1];
+
+				//gyroY
+				// H byte
+				frame.gyroY[i] = MPU6050.RxBuffer[2];
+				// L byte
+				frame.gyroY[i+1] = MPU6050.RxBuffer[3];
+
+				//gyroZ
+				// H byte
+				frame.gyroZ[i] = MPU6050.RxBuffer[4];
+				// L byte
+				frame.gyroZ[i+1] = MPU6050.RxBuffer[5];
 			}
 			MPU6050_sendFrame((uint8_t*)&frame, sizeof(frame));
+			MPU6050.sState = MPU6050_WAIT_TX_DATA;
+			break;
+		case MPU6050_WAIT_TX_DATA:
+			MPU6050.sState = MPU6050_RUNNING;
 			break;
 	}
 

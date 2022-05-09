@@ -127,6 +127,7 @@ typedef enum
 {
 	MPU6050_INIT,
 	MPU6050_RUNNING,
+	MPU6050_WAIT_TX_DATA,
 }MPU6050State_enum;
 
 

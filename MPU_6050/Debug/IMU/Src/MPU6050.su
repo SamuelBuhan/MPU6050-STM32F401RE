@@ -5,4 +5,4 @@ MPU6050.c:60:16:MPU6050_configureRegisters	8	static
 MPU6050.c:75:6:MPU6050_init	24	static
 MPU6050.c:117:6:MPU6050_sendFrame	24	static
 MPU6050.c:123:9:CRC8	24	static
-MPU6050.c:133:6:MPU6050_main	24	static
+MPU6050.c:133:6:MPU6050_main	40	static

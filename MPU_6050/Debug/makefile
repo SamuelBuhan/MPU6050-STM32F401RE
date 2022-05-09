@@ -62,8 +62,8 @@ all: main-build
 main-build: MPU_6050.elf secondary-outputs
 
 # Tool invocations
-MPU_6050.elf: $(OBJS) $(USER_OBJS) C:\Users\Utilisateur\STM32CubeIDE\workspace_1.6.1\IMU_MPU6050\MPU_6050\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "MPU_6050.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Utilisateur\STM32CubeIDE\workspace_1.6.1\IMU_MPU6050\MPU_6050\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MPU_6050.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+MPU_6050.elf: $(OBJS) $(USER_OBJS) C:\Projects\STM32CubeIDE\MPU6050-STM32\MPU6050-STM32F401RE\MPU_6050\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "MPU_6050.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Projects\STM32CubeIDE\MPU6050-STM32\MPU6050-STM32F401RE\MPU_6050\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MPU_6050.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
