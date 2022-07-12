@@ -8,3 +8,4 @@ there is a visualisation of IMU data with Python. Connect the flashed board and 
   * filtration 
 * Add magnetometer data to the signal
 
+If you like what I do and you want to support me, feel free to click on this [link](https://www.buymeacoffee.com/samuelbuhan).
